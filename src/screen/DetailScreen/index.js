@@ -19,6 +19,7 @@ const DetailScreen = props => {
   return (
     <View style={styles.mainContainer}>
       <ScrollView>
+        <View style={{flexDirection:'row',justifyContent:'space-between',width:'80%',alignSelf:'center'}}>
         <TouchableOpacity onPress={() => props.navigation.goBack()}>
           <Icon
             name={'arrowleft'}
@@ -27,6 +28,12 @@ const DetailScreen = props => {
             style={styles.icon}
           />
         </TouchableOpacity>
+        <TouchableOpacity 
+        style={{marginVertical:20,backgroundColor:colors.loadColor,borderRadius:10}}
+        onPress={()=>props.navigation.navigate("Chart")}>
+          <Text style={{color:colors.WHITE,padding:10}}>Chart</Text>
+        </TouchableOpacity>
+        </View>
 
         <View style={styles.card}>
           <View style={styles.imgCon}>

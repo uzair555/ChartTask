@@ -10,21 +10,26 @@ import {
   View,
 } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
-import StackNavigator from './src/navigation/StackNavigator';
 import 'react-native-gesture-handler';
 import {Provider} from 'react-redux';
-import {store} from './src/redux/store';
+
+import StackNavigator from './src/Navigation/StackNavigator';
+import Navigation from './src/Service/Navigation';
+import { store } from './src/redux/store';
+
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
   return (
     <Provider store={store}>
-      <NavigationContainer>
+        
+      <NavigationContainer ref={r => Navigation.setTopLevelNavigator(r)}>
         <SafeAreaView style={styles.mainContainer}>
           <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
           <StackNavigator />
         </SafeAreaView>
       </NavigationContainer>
+     
     </Provider>
   );
 };

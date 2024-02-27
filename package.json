@@ -20,6 +20,7 @@
     "moment": "^2.30.1",
     "native-base": "2.15.2",
     "react": "18.2.0",
+    "react-localize-redux": "^3.5.3",
     "react-native": "0.72.4",
     "react-native-elements": "^3.4.3",
     "react-native-gesture-handler": "^2.12.1",

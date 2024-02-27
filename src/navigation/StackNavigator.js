@@ -5,7 +5,7 @@ import AppStack from './AppStack';
 import { useDispatch, useSelector } from 'react-redux';
 import Auth from '../Service/Auth';
 import { setUser } from '../redux/reducers/dataReducer';
-
+import Translator from '../translator';
 
 const Stack = createNativeStackNavigator();
 
@@ -42,6 +42,7 @@ const StackNavigator = () => {
       return null;
     }
   return (
+    <Translator>
     <Stack.Navigator screenOptions={{headerShown: false}}>
       {/* <Stack.Screen name="SplashScreen" component={SplashScreen} /> */}
       {/* <Stack.Screen name="Auth" component={AuthStack} /> */}
@@ -53,6 +54,7 @@ const StackNavigator = () => {
      
      
     </Stack.Navigator>
+    </Translator>
   );
 };
 

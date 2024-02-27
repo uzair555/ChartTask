@@ -6,12 +6,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { removeUser, setUser } from '../../redux/reducers/dataReducer';
 import SimpleToast from "react-native-simple-toast"
 import database from '@react-native-firebase/database';
+import useTranslate from '../../hooks/useTranslat';
+import {withLocalize} from 'react-localize-redux';
 
-const ProfileScreen = () => {
+const ProfileScreen = ({activeLanguage,setActiveLanguage}) => {
   const dispatch = useDispatch();
-
+  const translate = useTranslate();
+//   const {activeLanguage, setActiveLanguage} = route.params;s
   const { userData } = useSelector(state => state.allDataReducer);
+  
+ 
+  console.log(activeLanguage, 'Langggggs');
 
+  const [lang, setLang] = useState(activeLanguage.code);
   
   const [updatedUserInfo, setUpdatedUserInfo] = useState({
     name: userData.name,
@@ -67,6 +74,7 @@ const ProfileScreen = () => {
         <Image source={{ uri: userData.img }} style={styles.profileImage} />
         <Text style={styles.profileText}>{userData.name}</Text>
         <Text style={styles.profileText}>{userData.email}</Text>
+        <Text style={styles.profileText}>{translate("how")}</Text>
        
       </View>
       <View style={styles.inputContainer}>
@@ -92,6 +100,18 @@ const ProfileScreen = () => {
        
         <TouchableOpacity style={styles.btn} onPress={handleUpdateProfile}>
           <Text style={styles.btnText}>Update Profile</Text>
+        </TouchableOpacity>
+       
+               <TouchableOpacity style={styles.logoutButton} onPress={()=>{
+                 if (lang === 'so') {
+                    setActiveLanguage('en');
+                    setLang('en');
+                  } else {
+                    setActiveLanguage('so');
+                    setLang('so');
+                  }
+               }}>
+          <Text style={styles.buttonText}>Language</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
           <Text style={styles.buttonText}>Logout</Text>
@@ -174,4 +194,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ProfileScreen;
+export default  withLocalize(ProfileScreen);;
